@@ -1,10 +1,13 @@
 import {useState} from 'react';
+
 import { AddCategoryForm } from './components/AddCategoryForm';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(['code']);
 
     const onAddCategory = (nueva)=>{
+        if(categories.includes(nueva)) return;
         setCategories([ nueva, ...categories]);
     }
     
@@ -12,11 +15,11 @@ export const GifExpertApp = () => {
     <>
         <h1>GifExpertApp</h1>
         <AddCategoryForm onNewCategory={ valor=> onAddCategory(valor) } />
-        <ol>
-            { categories.map(category => {
-                return <li key={category}>{ category }</li>
-            }) }
-        </ol>
+        { 
+            categories.map(category =>  (
+                <GifGrid key={category} category={category} />
+            )) 
+        }
     </>
   )
 }

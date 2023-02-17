@@ -10,7 +10,7 @@ export const AddCategoryForm = ({onNewCategory}) => {
         event.preventDefault();
         const valor = InputValue.trim();
         if(valor.length <= 1) return;
-        // En vez de un valor le pasamos un callback para manejar el arrary
+        
         onNewCategory(valor);
         setInputValue('');
     }
