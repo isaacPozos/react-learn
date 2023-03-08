@@ -1,29 +1,25 @@
-import { useFetch } from "../hooks/useFetch"
+import { useCounter, useFetch } from "../hooks";
+import { CharacterCard } from "./CharacterCard";
+import { LoadingQuote } from "./LoadingQuote";
 
 export const MultipleCustomHooks = () => {
-    const {data, isLoading, hasError} = useFetch('https://rickandmortyapi.com/api/character/1');
-    console.log(data);
+    const { counter, increment } = useCounter(1);
+    const {data, isLoading, hasError} = useFetch(`https://rickandmortyapi.com/api/character/${counter}`);
 
     return (
         <div>
             <h1>Rick & Morty</h1>
             <hr />
             {
-                (isLoading)? (
-                    <div className="alert alert-light" role="alert">
-                        Cargando...
-                    </div>
-                ):(
-                    <div className="card">
-                        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                )
+                (isLoading)
+                    ? <LoadingQuote />
+                    : <CharacterCard data={ data } />
             }
             
+            <button 
+                className="btn btn-info"
+                disabled={isLoading}
+                onClick={()=>increment()}>Siguiente Personaje</button>
 
             
         </div>
