@@ -10,12 +10,17 @@ import ReactDOM from 'react-dom/client'
 // import { Memorize } from './06-memos/Memorize';
 // import { MemorizeHook } from './06-memos/MemorizeHook';
 // import { CallbackHook } from './06-memos/CallbackHook';
-import { TodoApp } from './08-useReducer/TodoApp';
+// import { TodoApp } from './08-useReducer/TodoApp';
+// import { MainApp } from './09-useContext/MainApp';
+
+import { RouterProvider } from 'react-router-dom';
+import { router } from './09-useContext/router/Router';
 
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <TodoApp />
+    {/* <MainApp /> */}
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
